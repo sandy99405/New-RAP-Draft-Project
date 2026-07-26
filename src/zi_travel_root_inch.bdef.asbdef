@@ -1,0 +1,43 @@
+unmanaged implementation in class zbp_i_travel_root_inch unique;
+strict ( 2 );
+
+define behavior for ZI_TRAVEL_ROOT_INCH alias Travel
+lock master
+authorization master ( instance )
+{
+  create ( authorization : global );
+  update;
+  delete;
+
+  field ( readonly ) TravelId;
+
+  // Link to child booking
+  association _Booking { create; }
+}
+
+define behavior for ZI_BOOING_INCH_M alias Booking
+authorization dependent by _Travel
+lock dependent by _Travel
+{
+  update;
+  delete;
+
+  field ( readonly ) TravelId, BookingId;
+
+  // Associations back to parent and down to child supplement
+  association _Travel;
+  association _Suppl { create; }
+}
+
+define behavior for ZI_BOOKING_SUPPL_M alias Supplement
+authorization dependent by _Travel
+lock dependent by _Travel
+{
+  update;
+  delete;
+
+  field ( readonly ) TravelId, BookingId, BookingSupplementId;
+
+  association _Travel;
+  association _booking;
+}
