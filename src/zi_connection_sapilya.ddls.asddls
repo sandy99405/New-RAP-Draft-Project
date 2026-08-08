@@ -20,7 +20,7 @@ define view entity ZI_Connection_SAPilya
                purpose: #STANDARD,
                type:#IDENTIFICATION_REFERENCE,
                position: 10,
-               label: 'Connection Detail'},
+               label: 'Check with eclipse you idiot'},
                { id:'Flight',
                purpose: #STANDARD,
                type:#LINEITEM_REFERENCE,
@@ -49,7 +49,7 @@ define view entity ZI_Connection_SAPilya
   @UI.lineItem:[{position:50, label:'Departure Time'}]
   @UI.identification: [{ position: 50 }]    
       departure_time  as DepartureTime,
-  @UI.lineItem:[{position:10, label:'Time of Arrival'}]
+  @UI.lineItem:[{position:10, label:'Time of Arriva'}]
   @UI.identification: [{ position: 60 }]    
       arrival_time    as ArrivalTime,  
       @Semantics.quantity.unitOfMeasure: 'DistanceUnit'

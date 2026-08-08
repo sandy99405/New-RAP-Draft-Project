@@ -68,7 +68,12 @@ CLASS ZSRT_CL_PROCESS IMPLEMENTATION.
                       materialid = ls_item-Materialid
                       itemno = ls_item-itemno
                       description = ls_result
-                      %control-description = if_abap_behv=>mk-on
+                      %control = value #(
+                          billid = if_abap_behv=>mk-on
+                          materialid = if_abap_behv=>mk-on
+                          itemno     = if_abap_behv=>mk-on
+                          description = if_abap_behv=>mk-on
+                      )
                     )
                  ).
 
