@@ -1,0 +1,14 @@
+<core:FragmentDefinition
+    xmlns="sap.m" 
+    xmlns:core="sap.ui.core">
+    
+    <VBox class="sapUiMediumMargin">
+        <Title text="AI Assistant Agent" level="H3"/>
+        <Text text="This custom section communicates with the Python agent backend." />
+        
+        <!-- Add your custom controls, inputs, or chat windows here -->
+        <TextArea id="agentInput" rows="3" placeholder="Ask your agent..." width="100%"/>
+        <Button text="Send to Agent" press="onSendToAgent" type="Emphasized"/>
+        <Button text="New File"/>
+    </VBox>
+</core:FragmentDefinition>

@@ -1,0 +1,239 @@
+{
+	"_version": "1.83.1",
+	"sap.app": {
+		"id": "newproject",
+		"type": "application",
+		"i18n": {
+			"bundleUrl": "i18n/i18n.properties",
+			"supportedLocales": [
+				""
+			]
+		},
+		"applicationVersion": {
+			"version": "0.0.1"
+		},
+		"title": "{{Manage Material}}",
+		"description": "{{appDescription}}",
+		"resources": "resources.json",
+		"sourceTemplate": {
+			"id": "@sap/generator-fiori:lrop",
+			"version": "1.29.0",
+			"toolsId": "b9f5b5fd-529d-460c-a0a7-dc3e02f2ae3a"
+		},
+		"dataSources": {
+			"ZUI_FLIGHT_ZAPILYA_V2_VAN": {
+				"uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZUI_FLIGHT_ZAPILYA_V2_VAN',Version='0001')/$value/",
+				"type": "OData",
+				"settings": {
+					"localUri": "localService/mainService/ZUI_FLIGHT_ZAPILYA_V2_VAN.xml"
+				}
+			},
+			"annotation": {
+				"type": "ODataAnnotation",
+				"uri": "annotations/annotation.xml",
+				"settings": {
+					"localUri": "annotations/annotation.xml"
+				}
+			},
+			"mainService": {
+				"uri": "/sap/opu/odata/sap/ZUI_FLIGHT_ZAPILYA_V2/",
+				"type": "OData",
+				"settings": {
+					"annotations": [
+						"ZUI_FLIGHT_ZAPILYA_V2_VAN",
+						"annotation"
+					],
+					"localUri": "localService/mainService/metadata.xml",
+					"odataVersion": "2.0"
+				}
+			}
+		},
+		"crossNavigation": {
+			"inbounds": {
+				"new_sem-new_action": {
+					"semanticObject": "new_sem",
+					"action": "new_action",
+					"title": "{{new_sem-new_action.flpTitle}}",
+					"signature": {
+						"parameters": {},
+						"additionalParameters": "allowed"
+					}
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"flexEnabled": true,
+		"dependencies": {
+			"minUI5Version": "1.145.3",
+			"libs": {
+				"sap.m": {},
+				"sap.ui.core": {},
+				"sap.ushell": {},
+				"sap.f": {},
+				"sap.ui.comp": {},
+				"sap.ui.generic.app": {},
+				"sap.suite.ui.generic.template": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "newproject.i18n.i18n",
+					"supportedLocales": [
+						""
+					]
+				}
+			},
+			"": {
+				"dataSource": "mainService",
+				"preload": true,
+				"settings": {
+					"defaultBindingMode": "TwoWay",
+					"defaultCountMode": "Inline",
+					"refreshAfterChange": false,
+					"metadataUrlParams": {
+						"sap-value-list": "none"
+					}
+				}
+			},
+			"@i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"uri": "i18n/i18n.properties",
+				"settings": {
+					"supportedLocales": [
+						""
+					]
+				}
+			}
+		},
+		"resources": {
+			"css": []
+		},
+		"routing": {
+			"config": {},
+			"routes": [],
+			"targets": {}
+		},
+		"extends": {
+			"extensions": {
+				"sap.ui.viewExtensions": {
+					"sap.suite.ui.generic.template.ObjectPage.view.Details": {
+						"BeforeFacet|ZI_Connection_SAPilya|Connection": {
+							"className": "sap.ui.core.Fragment",
+							"fragmentName": "newproject.ext.AgentContainer",
+							"type": "XML"
+						}
+					}
+				},
+				"sap.ui.controllerExtensions": {
+					"sap.suite.ui.generic.template.ListReport.view.ListReport": {
+						"controllerName": "newproject.ext.controller.ListReportExt"
+					},
+					"sap.suite.ui.generic.template.ObjectPage.view.Details": {
+						"controllerName": "newproject.ext.controller.ObjectPageExt"
+					}
+				}
+			}
+		},
+		"flexBundle": false
+	},
+	"sap.ui.generic.app": {
+		"_version": "1.3.0",
+		"settings": {
+			"forceGlobalRefresh": false,
+			"objectPageHeaderType": "Dynamic",
+			"considerAnalyticalParameters": true,
+			"showDraftToggle": false
+		},
+		"pages": {
+			"ListReport|ZI_Connection_SAPilya": {
+				"entitySet": "ZI_Connection_SAPilya",
+				"component": {
+					"name": "sap.suite.ui.generic.template.ListReport",
+					"list": true,
+					"settings": {
+						"condensedTableLayout": true,
+						"smartVariantManagement": true,
+						"enableTableFilterInPageVariant": true,
+						"filterSettings": {
+							"dateSettings": {
+								"useDateRange": true
+							}
+						},
+						"tableSettings": {
+							"type": "ResponsiveTable"
+						},
+						"actions": {
+							"NewActionID": {
+								"id": "NewActionIDButton",
+								"text": "Submit",
+								"press": "NewFunction",
+								"requiresSelection": true,
+								"logicalAction": "Create"
+							}
+						}
+					}
+				},
+				"pages": {
+					"ObjectPage|ZI_Connection_SAPilya": {
+						"entitySet": "ZI_Connection_SAPilya",
+						"defaultLayoutTypeIfExternalNavigation": "MidColumnFullScreen",
+						"component": {
+							"name": "sap.suite.ui.generic.template.ObjectPage",
+							"settings": {
+								"actions": {
+									"NewActionButton": {
+										"id": "NewActionButton",
+										"text": "Check IT bro",
+										"press": "AnotherFunction",
+										"requiresSelection": true
+									}
+								}
+							}
+						},
+						"pages": {
+							"ObjectPage|to_Inch_R": {
+								"navigationProperty": "to_Inch_R",
+								"entitySet": "ZI_FLIGHT_INCH_R",
+								"defaultLayoutTypeIfExternalNavigation": "MidColumnFullScreen",
+								"component": {
+									"name": "sap.suite.ui.generic.template.ObjectPage"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"sap.fiori": {
+		"registrationIds": [],
+		"archeType": "transactional"
+	},
+	"sap.cloud": {
+		"public": true,
+		"service": "newproject"
+	}
+}
